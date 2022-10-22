@@ -1,5 +1,5 @@
-
-
+import AppBar from './components/App_bar';
+import { useState } from 'react';
 import './App.css';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -7,22 +7,29 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-
+import Modal from './components/Modal'
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Unstable_Grid2';
+import Drawer from './components/drawer'
 
 
 
 function App() {
     
+  const [open, setOpen] = useState(false);
+  const [Dopen, setDopen] = useState(false);
+
+
+
 
     return (
+      <>
+       <AppBar openSD={setDopen} />
+       <br/>
         <div className='main'>
        
             <Box sx={{ flexGrow: 1 }}>
-              <>
-              
-              </>
+            <Drawer DrawerB={Dopen} openSD={setDopen}/>
                 <Grid
                     container
                     spacing={{ xs: 2, md: 3 }}
@@ -54,14 +61,16 @@ function App() {
                                     </Typography>
                                 </CardContent>
                                 <CardActions>
-                                    <Button size="small">Buy</Button>
+                                    <Button onClick={()=>{setOpen(open => open = !open)}} size="small">Buy</Button>
                                 </CardActions>
                             </Card>
                         </Grid>
                     ))}
                 </Grid>
             </Box>
+            <Modal open={open} setOpen={setOpen} />
         </div>
+        </>
     );
 }
 

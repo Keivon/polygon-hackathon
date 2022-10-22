@@ -2,6 +2,7 @@ import { styled, alpha } from '@mui/material/styles';
 import "./app_bar.css"
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
+import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
@@ -50,20 +51,25 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function SearchAppBar() {
+export default function SearchAppBar({openSD, data}) {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
+        <IconButton
             size="large"
             edge="start"
             color="inherit"
-            aria-label="open drawer"
+            aria-label="menu"
             sx={{ mr: 2 }}
+            onClick={()=>{openSD(true)}}
           >
-              <button className='menu-button'>Login</button>
+            <MenuIcon />
           </IconButton>
+
+
+              <button className='menu-button'>Login</button>
+        
           <Typography
             variant="h6"
             noWrap
