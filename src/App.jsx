@@ -1,75 +1,37 @@
-import AppBar from './components/App_bar';
-import { useState } from 'react';
-import './App.css';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import Modal from './components/Modal'
-import Box from '@mui/material/Box';
-import Grid from '@mui/material/Unstable_Grid2';
-import Drawer from './components/drawer'
-
-
+import Home from './pages/Home';
+import Login from './pages/Login';
+import { useState, useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
 
 function App() {
-    
-  const [open, setOpen] = useState(false);
-  const [Dopen, setDopen] = useState(false);
+    const [isConnected, setIsConnected] = useState(false);
+    const [userInfo, setUserInfo] = useState({});
 
+    useEffect(() => {
+      
+   },[isConnected]);
 
-
+   console.log(userInfo)
 
     return (
-      <>
-       <AppBar openSD={setDopen} />
-       <br/>
-        <div className='main'>
-       
-            <Box sx={{ flexGrow: 1 }}>
-            <Drawer DrawerB={Dopen} openSD={setDopen}/>
-                <Grid
-                    container
-                    spacing={{ xs: 2, md: 3 }}
-                    columns={{ xs: 4, sm: 8, md: 12 }}>
-                    {Array.from(Array(12)).map((_, index) => (
-                        <Grid xs={2} sm={4} md={4} key={index}>
-                            <Card sx={{ maxWidth: 345 }}>
-                                <CardMedia
-                                    component="img"
-                                    alt="green iguana"
-                                    height="140"
-                                    image="https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png"
-                                />
-
-                                <CardContent>
-                                    <Typography
-                                        gutterBottom
-                                        variant="h5"
-                                        component="div">
-                                        Lizard
-                                    </Typography>
-                                    <Typography
-                                        variant="body2"
-                                        color="text.secondary">
-                                        Lizards are a widespread group of
-                                        squamate reptiles, with over 6,000
-                                        species, ranging across all continents
-                                        except Antarctica
-                                    </Typography>
-                                </CardContent>
-                                <CardActions>
-                                    <Button onClick={()=>{setOpen(open => open = !open)}} size="small">Buy</Button>
-                                </CardActions>
-                            </Card>
-                        </Grid>
-                    ))}
-                </Grid>
-            </Box>
-            <Modal open={open} setOpen={setOpen} />
-        </div>
+        <>
+            <Routes>
+                <Route path="/" element={<Home
+                 setIsConnected={setIsConnected}
+                 setUserInfo={setUserInfo}
+                 isConnected={isConnected}
+                 />} />
+                <Route
+                    path="/login"
+                    element={
+                        <Login
+                            setIsConnected={setIsConnected}
+                            setUserInfo={setUserInfo}
+                            isConnected={isConnected}
+                            userInfo={userInfo}
+                        />
+                    }></Route>
+            </Routes>
         </>
     );
 }
