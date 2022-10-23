@@ -58,14 +58,15 @@ export default function SearchAppBar({
     setUserInfo,
     isConnected,
 }) {
+  
 
-
-const singout = ()=> {
- window.localStorage.removeItem('userAccount');
-    setUserInfo({});
-    setIsConnected(false);
-}
-
+    const singout = () => {
+        console.log('StateAB');
+        window.localStorage.removeItem('userAccount');
+        setUserInfo({});
+        setIsConnected(false);
+      
+    };
 
     return (
         <Box sx={{ flexGrow: 1 }}>
@@ -83,11 +84,17 @@ const singout = ()=> {
                         <MenuIcon />
                     </IconButton>
                     {isConnected ? (
-                        <button className="menu-button">Logout</button>
+                        <button
+                            className="menu-button"
+                            onClick={() => {
+                                singout();
+                            }}>
+                            Logout
+                        </button>
                     ) : (
                         <NavLink to="/login">
                             {' '}
-                            <button className="menu-button" onClick={()=>{singout()}}>Login</button>{' '}
+                            <button className="menu-button">Login</button>{' '}
                         </NavLink>
                     )}
 

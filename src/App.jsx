@@ -7,9 +7,6 @@ function App() {
     const [isConnected, setIsConnected] = useState(false);
     const [userInfo, setUserInfo] = useState({});
 
-    useEffect(() => {
-      
-   },[isConnected]);
 
    console.log(userInfo)
 

@@ -95,7 +95,6 @@ useEffect(() => {
       <div className="app-wrapper">
         {!isConnected && (
           <div>
-            <img src={MetamaskLogo} alt="meta mask logo" />
             <button className="app-buttons__login" onClick={onConnect}>
               Connect to MetaMask
             </button>

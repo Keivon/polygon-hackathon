@@ -14,18 +14,25 @@ import Grid from '@mui/material/Unstable_Grid2';
 import Drawer from '../../components/drawer';
 
 function Home({ setIsConnected, setUserInfo, isConnected }) {
-
     useEffect(() => {
         function checkConnectedWallet() {
-          const userData = JSON.parse(localStorage.getItem('userAccount'));
-          if (userData != null) {
-            setUserInfo(userData);
-            setIsConnected(true);
-          }
+            const userData = JSON.parse(localStorage.getItem('userAccount'));
+            if (userData != null) {
+                setUserInfo(userData);
+                setIsConnected(true);
+            }
         }
         checkConnectedWallet();
-      }, []);
+    }, []);
 
+    let Games = [
+        { Name: 'Doom', URI: '../../../images/Doom.jpg' },
+        { Name: 'DukeNukem', URI: '../../../images/DukeNukem.jpg' },
+        { Name: 'Morrowind', URI: '../../../images/Morrowind.png' },
+        { Name: 'NBA2K', URI: '../../../images/NBA2K.png' },
+        { Name: 'PokemonRed', URI: '../../../images/PokemonRed.jpeg' },
+        { Name: 'Starcraft', URI: '../../../images/Starcraft.jpg' },
+    ];
 
     const [open, setOpen] = useState(false);
     const [Dopen, setDopen] = useState(false);
@@ -46,29 +53,21 @@ function Home({ setIsConnected, setUserInfo, isConnected }) {
                         container
                         spacing={{ xs: 2, md: 3 }}
                         columns={{ xs: 4, sm: 8, md: 12 }}>
-                        {Array.from(Array(12)).map((_, index) => (
+                        {Games.map((game, index) => (
                             <Grid xs={2} sm={4} md={4} key={index}>
                                 <Card sx={{ maxWidth: 345 }}>
                                     <CardMedia
                                         component="img"
                                         alt="green iguana"
                                         height="140"
-                                        image="https://upload.wikimedia.org/wikipedia/en/5/51/Minecraft_cover.png"
+                                        image={game.URI}
                                     />
                                     <CardContent>
                                         <Typography
                                             gutterBottom
                                             variant="h5"
                                             component="div">
-                                            Lizard
-                                        </Typography>
-                                        <Typography
-                                            variant="body2"
-                                            color="text.secondary">
-                                            Lizards are a widespread group of
-                                            squamate reptiles, with over 6,000
-                                            species, ranging across all
-                                            continents except Antarctica
+                                            {game.Name}
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
