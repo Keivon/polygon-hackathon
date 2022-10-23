@@ -1,0 +1,18 @@
+#root {
+  
+    margin: auto;
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .main {
+    margin: auto;
+    overflow-y: scroll;
+    height: 78vh;
+  }
+  
+  .MuiCardMedia-img {
+    width: 200px;
+    height: 350px;
+    object-fit: cover;
+  }
